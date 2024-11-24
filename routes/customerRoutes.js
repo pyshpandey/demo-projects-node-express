@@ -12,9 +12,9 @@ router.post('/create', async (req, res) => {
     }
 });
 
-router.get('/:email', async (req, res) => {
+router.get('/fetch', async (req, res) => {
     try {
-        const customer = await getCustomerDetails(req.params.email);
+        const customer = await getCustomerDetails(req.query.email);
         if (!customer) return res.status(404).json({ error: 'Customer not found' });
         res.status(200).json(customer);
     } catch (err) {

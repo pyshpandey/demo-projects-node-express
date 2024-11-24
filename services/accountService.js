@@ -1,5 +1,9 @@
 const Account = require('../models/Account');
 
+const getAccounts = async () => {
+    return await Account.find();
+};
+
 const createAccount = async (accountData) => {
     const account = new Account(accountData);
     return await account.save();
@@ -21,9 +25,9 @@ const withdraw = async (accountId, amount) => {
 };
 
 const getAccountDetails = async (accountId) => {
-    return await Account.findOne({});
+    return await Account.findOne({accountId});
 };
 
 module.exports = {
-    createAccount, deposit, withdraw, getAccountDetails
+    getAccounts, createAccount, deposit, withdraw, getAccountDetails
 };

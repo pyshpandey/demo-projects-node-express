@@ -6,7 +6,7 @@ const createCustomer = async(customerData) => {
 };
 
 const getCustomerDetails = async(email) => {
-    return await Customer.findOne({email});
+    return await Customer.findOne({email}).populate('accounts');
 };
 
 

@@ -1,7 +1,16 @@
 const express = require('express');
-const { createAccount, deposit, withdraw, getAccountDetails } = require('../services/accountService');
+const { getAccounts, createAccount, deposit, withdraw, getAccountDetails } = require('../services/accountService');
 
 const router = express.Router();
+
+router.get('/', async (req, res) => {
+    try {
+        const accountList = await getAccounts();
+        res.status(200).json(accountList);
+    } catch (err) {
+        res.status(400).json({ error: err.message });
+    }
+});
 
 router.post('/create', async (req, res) => {
     try {
